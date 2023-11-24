@@ -1,0 +1,30 @@
+# queryPerson
+peer chaincode query -C <channel_name> -n <chaincode_name> -c '{"Args":["queryPerson","PERSON0"]}'
+
+# initLedger
+# No query as it is an initialization function. You can check the ledger to verify that the initial persons are created.
+
+# createPerson
+peer chaincode invoke -o <orderer_address> -C <channel_name> -n <chaincode_name> --peerAddresses <peer_address> --tlsRootCertFiles <peer_tls_cert> -c '{"Args":["createPerson", "PERSON3", "New Person", "1995-08-21", "789 Elm St", "555-4321"]}'
+
+# queryAllPersons
+peer chaincode query -C <channel_name> -n <chaincode_name> -c '{"Args":["queryAllPersons"]}'
+
+# updateAllOrganizations
+peer chaincode invoke -o <orderer_address> -C <channel_name> -n <chaincode_name> --peerAddresses <peer_address> --tlsRootCertFiles <peer_tls_cert> -c '{"Args":["updateAllOrganizations", "PERSON0", "Updated Person", "1990-01-01", "123 Main St", "555-1234", "50000", "ABC123"]}'
+
+# queryPanCardDetailsOrg1
+peer chaincode query -C <channel_name> -n <chaincode_name> -c '{"Args":["queryPanCardDetailsOrg1", "PERSON0"]}'
+
+# queryPanCardDetailsOrg2
+peer chaincode query -C <channel_name> -n <chaincode_name> -c '{"Args":["queryPanCardDetailsOrg2", "PERSON0"]}'
+
+# getHistoryForPerson
+peer chaincode query -C <channel_name> -n <chaincode_name> -c '{"Args":["getHistoryForPerson", "PERSON0"]}'
+
+# queryPersonsByAddress
+peer chaincode query -C <channel_name> -n <chaincode_name> -c '{"Args":["queryPersonsByAddress", "123 Main St"]}'
+
+# restrictedMethod
+# Assuming you have an "admin" user in your MSP
+peer chaincode invoke -o <orderer_address> -C <channel_name> -n <chaincode_name> --peerAddresses <peer_address> --tlsRootCertFiles <peer_tls_cert> -c '{"Args":["restrictedMethod"]}' --transient <transient_data>
